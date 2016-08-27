@@ -1,8 +1,16 @@
 language: ruby
 rvm:
-  - 2.3.1
+- 2.3.1
 addons:
-  postgresql: "9.4"
+  postgresql: '9.4'
 before_script:
-  - psql -c 'create database travis_ci_test;' -U postgres
-  - cp config/database.yml.travis config/database.yml
+- psql -c 'create database travis_ci_test;' -U postgres
+- cp config/database.yml.travis config/database.yml
+deploy:
+  provider: heroku
+  api_key:
+    secure: c/k9CrEYbzENDf3dVEuuNIYE4PfgMHOkqYxlOwiZ0+S81kfbAt1KDvZeO6+TSNWZL3gmOYqJj+IUI4bxjxl2lNeuHqL83n9TAGPGPKoLbif+yI/NUBr53ullmqjDMlJcmL1YVoTCU8GjLn0rwjtKc7RbOVDxZirxsfRiuLy9eetKwqUnRiioI2cgw5DOhbR1fXWEQrty0EyIf/VxQGFJFRHySGEbJv1rPjJ5uEWCUxMOK6OfomBi5hz8Wdyd33lbzXv2RMJtbiBzsCoXPxTRNxeNRB/4Xc5+YFbO2MdbydIq7ExHyZ7jQhfdmFNlFpCVW8iEAwYmTfLiMZBn5p5b0Ou0GbQrI8jNFsY1D06xt/4MCzNz6/PSZExyA1eAGhAVtSygBUu2KMeftkmrT1c/kuP1ZihrMWqlGgO4oZKhsQF41GdYziyPhz4OzngINhTb1zcPR6gT0AjXfhNTvN2zABgpHiZmUqmkiGrUYAVbHZKAXRGhb7UIxZGIQAv+D+IyAhX/dIAHJ7R64kYOYIRloJ9nH/Kcl5GxraHRVOMhHOJ9Dc4qP/HviEoeX7XoVnCuaPLPFx0tohRlB5MQBiP2+U7ESpSBb4o0nAk5E5Znem15gSViP/V3RYqjfEX1WsadC44QAf6M9kukzNC211wTUhJ1UjmuS8/zPTn1ExrjQdk=
+  app: dossett-doings
+  on:
+    repo: sdossettswift/dossett_doings
+    run: rake db:migrate
