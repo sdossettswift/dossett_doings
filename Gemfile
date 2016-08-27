@@ -12,7 +12,7 @@ gem 'jbuilder', '~> 2.5'
 # gem 'bcrypt', '~> 3.1.7'
 gem 'rails_12factor'
 gem 'minitest-rails'
-
+gem 'devise'
 
 group :test do
   gem 'minitest-rails-capybara'
